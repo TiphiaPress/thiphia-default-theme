@@ -1,92 +1,63 @@
-# Tiphia Default Theme
+# Default Theme
 
-This repository contains the default public blog theme for TiphiaPress. It is designed to be copied or linked into `tiphia-frontend/src/themes/default`.
-
-## Documentation
-
-Full documentation:
-
-https://tiphiapress.github.io/
-
-Useful sections:
-
-- Theme development: https://tiphiapress.github.io/#/themes
-- Frontend hooks: https://tiphiapress.github.io/#/frontend-hooks
-- API reference: https://tiphiapress.github.io/#/api
-
-## Repository Role
-
-The theme owns public blog layout and decides where frontend plugin Hook slots are rendered. The frontend shell provides data and runtime APIs; the theme provides presentation.
-
-Typical target path inside the frontend repository:
+The default theme owns public blog rendering and chooses where plugin hook slots are rendered. All theme-owned files stay inside this theme package:
 
 ```text
-tiphia-frontend/src/themes/default/
+src/themes/default/
   index.tsx
+  views.tsx
   theme.css
-  externalLinks.ts
-  ExternalWarningPage.tsx
-  README.md
+  favicon.ico
+  components/
 ```
 
-Static theme assets should be placed in the frontend public directory:
+The browser tab icon is imported from this directory's `favicon.ico` by the theme registry. Do not put theme assets in `public/`.
 
-```text
-tiphia-frontend/public/themes/default/favicon.ico
-```
+Available slots used by this theme:
 
-The frontend automatically reads the browser tab icon from:
-
-```text
-/themes/default/favicon.ico
-```
-
-No theme JSON option is required for favicon.
-
-## Supported Hook Slots
-
-The default theme renders these frontend hooks:
-
-- `blog.body.start`
-- `blog.body.end`
 - `blog.header.before`
 - `blog.header.after`
 - `blog.nav.after`
-- `blog.sidebar`
 - `blog.main.before`
 - `blog.main.after`
 - `blog.footer.before`
-- `blog.footer.filing`
 - `blog.footer.after`
 - `blog.home.hero.after`
-- `blog.post.content.before`
 - `blog.post.content.after`
-- `blog.comment.captcha`
 - `blog.comment.form.before`
 - `blog.comment.form.after`
 
+Theme authors can add or remove slots in their own theme. The frontend skeleton defines the hook interface; plugins decide what to register into each slot.
+
 ## Theme Configuration
 
-The default theme accepts free-form JSON from site settings. Common fields include:
+The default theme reads free-form JSON from the active theme configuration. Example:
 
 ```json
 {
-  "accent": "#2563eb",
-  "font_family": "Inter, system-ui, sans-serif",
-  "posts_per_page": 10,
-  "show_popular_posts": true,
-  "popular_posts_limit": 5,
-  "show_recent_comments": true,
-  "recent_comments_limit": 5,
+  "show_upyun": true,
   "footer_items": [
-    { "label": "GitHub", "href": "https://github.com/TiphiaPress/tiphia", "icon": "github" },
-    { "label": "RSS", "href": "/feed.xml", "icon": "rss" }
-  ],
-  "nav_pages": [
-    { "label": "About", "slug": "about", "display": "article" },
-    { "label": "Links", "slug": "links", "display": "article" }
+    { "label": "GitHub", "href": "https://github.com/TiphiaPress/tiphia", "icon": "github" }
   ]
 }
 ```
 
-`footer_items` currently supports `github`, `home`, `mail`, and `rss`; unknown icons fall back to a link icon.
+`show_upyun` controls the Upyun alliance footer. It is hidden unless the value is exactly `true`.
+
+## Admin Configuration Panel
+
+Default theme provides `ThemeConfigPanel.tsx` and registers it through `ConfigPanel` in `src/themes/index.ts`.
+The admin theme page loads this component directly, so users configure the theme through a form instead of editing raw JSON.
+
+A third-party theme can expose the same capability by exporting a React component that matches `ThemeConfigPanelProps` from `src/themes/types.ts`, then registering it on the theme object:
+
+```ts
+const myTheme: BlogTheme = {
+  name: "my-theme",
+  ConfigPanel: MyThemeConfigPanel,
+  Layout: MyLayout,
+  views,
+};
+```
+
+The panel receives current config, saving state, error, and an `onSubmit(config)` callback. The submitted object is saved as the theme config in site settings.
