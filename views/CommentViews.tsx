@@ -59,7 +59,6 @@ export function DefaultCommentFormView({ title, form, pending, error, successTex
       <input placeholder="网址，可选" value={form.author_url} onChange={(event) => onFormChange({ ...form, author_url: event.target.value })} />
       <textarea placeholder="写下你的评论" rows={5} value={form.content} onChange={(event) => onFormChange({ ...form, content: event.target.value })} />
       {captchaRequired ? <FrontendHookSlot hook="blog.comment.captcha" context={{ mode: "comment", title, form, onVerify: onCaptcha }} /> : null}
-      {captchaRequired && !captcha ? <p className="muted">请先完成验证码。</p> : null}
       {error ? <p className="error-text">{error instanceof Error ? error.message : "评论提交失败"}</p> : null}
       {successText ? <p className="success-text">{successText}</p> : null}
       <FrontendHookSlot hook="blog.comment.form.after" context={{ title, form }} />
@@ -67,5 +66,7 @@ export function DefaultCommentFormView({ title, form, pending, error, successTex
     </form>
   );
 }
+
+
 
 

@@ -56,7 +56,6 @@ export function DefaultRegisterView({
           <label><span>显示名</span><input autoComplete="name" value={form.display_name} onChange={(event) => onFormChange({ ...form, display_name: event.target.value })} /></label>
           <label><span>密码</span><input type="password" autoComplete="new-password" value={form.password} onChange={(event) => onFormChange({ ...form, password: event.target.value })} /></label>
           <FrontendHookSlot hook="blog.auth.register.captcha" context={{ mode: "register", onVerify: onCaptcha }} />
-          {captchaRequired && !captcha ? <p className="muted">请先完成验证码。</p> : null}
           {error ? <p className="error-text">{error.message}</p> : null}
           {success ? <p className="success-text">注册成功，请前往管理后台登录。</p> : null}
           <button type="submit" disabled={pending}>{pending ? "提交中..." : "注册"}</button>
@@ -65,4 +64,6 @@ export function DefaultRegisterView({
     </section>
   );
 }
+
+
 
