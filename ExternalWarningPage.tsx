@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 export function DefaultExternalWarningView({ target }: { target: string }) {
   const url = safeUrl(target);
-  console.log(url);
   return (
     <section className="external-warning-page">
       <div className="external-warning-panel">
@@ -16,7 +15,7 @@ export function DefaultExternalWarningView({ target }: { target: string }) {
         </div>
         <div className="external-actions">
           <Link className="button subtle" to="/">返回首页</Link>
-          {url ? <a className="button" href={url.href} target="_blank" rel="noreferrer noopener">继续访问</a> : null}
+          {url ? <a className="button" href={url.href} target="_blank" rel="noreferrer noopener" data-safe-external="true">继续访问</a> : null}
         </div>
       </div>
     </section>
