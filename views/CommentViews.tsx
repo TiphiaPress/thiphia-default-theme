@@ -1,4 +1,5 @@
 import type { FormEvent, ReactNode } from "react";
+import type { PublicUser } from "../../../admin/types";
 import { FrontendHookSlot } from "../../../framework/plugin-hooks";
 import type { CommentFormState } from "../../../blog/hooks/useRememberedCommentForm";
 import type { CommentNode } from "../../../blog/types";
@@ -36,9 +37,10 @@ export function DefaultCommentItemView({ comment, replying, onToggleReply, reply
   );
 }
 
-export function DefaultCommentFormView({ title, form, pending, error, successText, captchaRequired, captcha, onCaptcha, onFormChange, onSubmit }: {
+export function DefaultCommentFormView({ title, form, currentUser, pending, error, successText, captchaRequired, captcha, onCaptcha, onFormChange, onSubmit }: {
   title: string;
   form: CommentFormState;
+  currentUser?: PublicUser | null;
   pending: boolean;
   error: unknown;
   successText: string;
@@ -51,17 +53,23 @@ export function DefaultCommentFormView({ title, form, pending, error, successTex
   return (
     <form className="comment-form" onSubmit={(event: FormEvent) => { event.preventDefault(); onSubmit(); }}>
       <h3>{title}</h3>
-      <FrontendHookSlot hook="blog.comment.form.before" context={{ title, form }} />
-      <div className="form-row">
-        <input placeholder="昵称" value={form.author_name} onChange={(event) => onFormChange({ ...form, author_name: event.target.value })} />
-        <input placeholder="邮箱" type="email" value={form.author_email} onChange={(event) => onFormChange({ ...form, author_email: event.target.value })} />
-      </div>
-      <input placeholder="网址，可选" value={form.author_url} onChange={(event) => onFormChange({ ...form, author_url: event.target.value })} />
+      <FrontendHookSlot hook="blog.comment.form.before" context={{ title, form, currentUser }} />
+      {currentUser ? (
+        <p className="comment-login-identity">以 <strong>{currentUser.display_name || currentUser.username}</strong> 身份评论</p>
+      ) : (
+        <>
+          <div className="form-row">
+            <input placeholder="昵称" value={form.author_name} onChange={(event) => onFormChange({ ...form, author_name: event.target.value })} />
+            <input placeholder="邮箱" type="email" value={form.author_email} onChange={(event) => onFormChange({ ...form, author_email: event.target.value })} />
+          </div>
+          <input placeholder="网址，可选" value={form.author_url} onChange={(event) => onFormChange({ ...form, author_url: event.target.value })} />
+        </>
+      )}
       <textarea placeholder="写下你的评论" rows={5} value={form.content} onChange={(event) => onFormChange({ ...form, content: event.target.value })} />
       {captchaRequired ? <FrontendHookSlot hook="blog.comment.captcha" context={{ mode: "comment", title, form, onVerify: onCaptcha }} /> : null}
       {error ? <p className="error-text">{error instanceof Error ? error.message : "评论提交失败"}</p> : null}
       {successText ? <p className="success-text">{successText}</p> : null}
-      <FrontendHookSlot hook="blog.comment.form.after" context={{ title, form }} />
+      <FrontendHookSlot hook="blog.comment.form.after" context={{ title, form, currentUser }} />
       <button type="submit" disabled={pending}>{pending ? "提交中..." : "提交评论"}</button>
     </form>
   );

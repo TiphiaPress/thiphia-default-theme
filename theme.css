@@ -2109,3 +2109,21 @@ footer .filing-info {
     linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.26)),
     color-mix(in srgb, var(--accent) 20%, transparent);
 }
+
+.comment-login-identity {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-accent) 9%, transparent);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.comment-login-identity strong {
+  color: var(--text);
+}
