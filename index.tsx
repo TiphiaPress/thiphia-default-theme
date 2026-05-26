@@ -6,6 +6,7 @@ import { SiteAvatar } from "./components/SiteAvatar";
 import { TermLinks } from "./components/TermLinks";
 import { ThemeFooterItems } from "./components/ThemeFooterItems";
 import { UpyunFooter } from "./components/UpyunFooter";
+import { PoweredByTiphia } from "./components/PoweredByTiphia";
 import type { ThemeNavPage } from "../../blog/lib/theme";
 import "./theme.css";
 
@@ -70,6 +71,7 @@ export function DefaultThemeLayout({
         <TermLinks terms={terms.filter((term) => term.term_type === "tag")} config={config} />
         <FrontendHookSlot hook="blog.footer.filing" context={{ title }} />
         <FrontendHookSlot hook="blog.footer.after" context={{ title }} />
+        <PoweredByTiphia />
         {showUpyun ? <UpyunFooter /> : null}
       </footer>
       <FrontendHookSlot hook="blog.body.end" context={{ title }} />
@@ -89,3 +91,54 @@ function handleExternalLinkClick(event: React.MouseEvent<HTMLDivElement>, baseUr
 }
 
 export { FrontendHookSlot };
+
+import { DefaultThemeConfigPanel } from "./ThemeConfigPanel";
+import defaultFaviconUrl from "./favicon.ico";
+import { DefaultExternalWarningView } from "./ExternalWarningPage";
+import { PostCard, PostStats } from "./components/PostCard";
+import { State } from "./components/State";
+import { PopularPosts, RecentComments } from "./components/Widgets";
+import {
+  DefaultArticleView,
+  DefaultCommentFormView,
+  DefaultCommentItemView,
+  DefaultCommentsView,
+  DefaultHomeView,
+  DefaultPlainPageView,
+  DefaultRegisterView,
+  DefaultTermArchiveView,
+  DefaultTermDirectoryView,
+  DefaultTimelineView,
+} from "./views";
+import type { BlogTheme } from "../types";
+
+export const defaultTheme: BlogTheme = {
+  name: "default",
+  faviconUrl: defaultFaviconUrl,
+  ConfigPanel: DefaultThemeConfigPanel,
+  Layout: DefaultThemeLayout,
+  views: {
+    State,
+    PostCard,
+    PostStats,
+    PopularPosts,
+    RecentComments,
+    Home: DefaultHomeView,
+    Article: DefaultArticleView,
+    PlainPage: DefaultPlainPageView,
+    TermDirectory: DefaultTermDirectoryView,
+    TermArchive: DefaultTermArchiveView,
+    Timeline: DefaultTimelineView,
+    Register: DefaultRegisterView,
+    Comments: DefaultCommentsView,
+    CommentItem: DefaultCommentItemView,
+    ExternalWarning: DefaultExternalWarningView,
+    CommentForm: DefaultCommentFormView,
+  },
+};
+
+export default defaultTheme;
+
+
+
+

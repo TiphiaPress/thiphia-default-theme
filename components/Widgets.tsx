@@ -18,6 +18,10 @@ export function PopularPosts({ posts, loading }: { posts: PostResponse[]; loadin
   );
 }
 
+function recentCommentPath(comment: RecentComment) {
+  return comment.post_type === "page" ? `/pages/${comment.post_slug}` : `/posts/${comment.post_slug}`;
+}
+
 export function RecentComments({ comments, loading }: { comments: RecentComment[]; loading: boolean }) {
   return (
     <section className="widget">
@@ -25,7 +29,7 @@ export function RecentComments({ comments, loading }: { comments: RecentComment[
       {loading ? <p>加载中...</p> : null}
       {!loading && comments.length === 0 ? <p>暂无评论</p> : null}
       {comments.map((comment) => (
-        <Link key={comment.id} to={`/posts/${comment.post_slug}`}>
+        <Link key={comment.id} to={recentCommentPath(comment)}>
           <span>{comment.author_name}</span>
           <small>{comment.post_title} · {stripHtml(comment.content).slice(0, 48)}</small>
         </Link>
@@ -33,3 +37,5 @@ export function RecentComments({ comments, loading }: { comments: RecentComment[
     </section>
   );
 }
+
+

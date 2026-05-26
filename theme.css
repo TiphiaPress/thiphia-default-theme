@@ -137,6 +137,40 @@
 .theme-footer-items a:hover {
   color: var(--accent);
 }
+.theme-powered-by {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  font-size: 13px;
+}
+
+.theme-powered-by a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid color-mix(in srgb, var(--theme-border) 78%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-surface) 72%, transparent);
+  color: color-mix(in srgb, var(--theme-muted) 86%, var(--theme-text));
+  padding: 6px 10px;
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.theme-powered-by strong {
+  color: color-mix(in srgb, var(--theme-text) 76%, var(--theme-muted));
+  font-weight: 750;
+}
+
+.theme-powered-by a:hover {
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--theme-border));
+  background: color-mix(in srgb, var(--accent) 7%, var(--theme-surface));
+  color: var(--accent);
+}
+
+.theme-powered-by a:hover strong {
+  color: var(--accent);
+}
 :root[data-theme="default"] .content table {
   display: block;
   width: 100%;
@@ -786,19 +820,62 @@ footer .filing-info {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--panel);
+  min-width: 0;
   padding: 14px;
   margin-top: 12px;
 }
 
 .comment-author {
+  min-width: 0;
   color: var(--accent);
   font-weight: 800;
 }
 
 .comment-children {
+  min-width: 0;
   margin-left: 18px;
 }
 
+.comment-content {
+  max-width: 100%;
+  min-width: 0;
+  margin: 8px 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.comment-content a,
+.comment-author-name {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (max-width: 520px) {
+  .comments,
+  .comment,
+  .comment-form,
+  .comment-author-row,
+  .comment-content {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .comment {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .comment-children {
+    margin-left: 0;
+    padding-left: 10px;
+    border-left: 1px solid var(--border);
+  }
+
+  .comment-author-row {
+    align-items: flex-start;
+  }
+}
 .comment-form {
   display: grid;
   gap: 12px;
@@ -994,6 +1071,7 @@ footer .filing-info {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
   margin-bottom: 8px;
 }
 
@@ -1013,6 +1091,7 @@ footer .filing-info {
 }
 
 .comment-author-name {
+  min-width: 0;
   color: var(--accent);
   font-weight: 800;
 }
@@ -2127,3 +2206,9 @@ footer .filing-info {
 .comment-login-identity strong {
   color: var(--text);
 }
+
+
+
+
+
+

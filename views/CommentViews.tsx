@@ -29,7 +29,7 @@ export function DefaultCommentItemView({ comment, replying, onToggleReply, reply
   return (
     <div className={"comment comment-depth-" + depth}>
       <CommentAuthor comment={comment} gravatarBaseUrl={gravatarBaseUrl} />
-      <p>{comment.content}</p>
+      <p className="comment-content">{comment.content}</p>
       <button className="text-button" type="button" onClick={onToggleReply}>{replying ? "取消回复" : "回复"}</button>
       {replying ? replyForm : null}
       {children ? <div className="comment-children">{children}</div> : null}
@@ -74,6 +74,7 @@ export function DefaultCommentFormView({ title, form, currentUser, pending, erro
     </form>
   );
 }
+
 
 
 
