@@ -38,7 +38,7 @@ export function DefaultArticleView({
   );
 }
 
-export function DefaultPlainPageView({ post, slug, navPage }: { post: PostResponse; slug: string; navPage?: ThemeNavPage }) {
+export function DefaultPlainPageView({ post, slug, navPage, showComments, comments }: { post: PostResponse; slug: string; navPage?: ThemeNavPage; showComments?: boolean; comments?: ReactNode }) {
   return (
     <article className="article theme-page plain">
       <Link to="/" className="back-link"><ArrowLeft size={16} /> 返回首页</Link>
@@ -46,6 +46,7 @@ export function DefaultPlainPageView({ post, slug, navPage }: { post: PostRespon
       <div className="content">{stripHtml(post.html)}</div>
       <FrontendHookSlot hook="blog.custom-page.after" context={{ post, slug, navPage }} />
       <FrontendHookSlot hook={customPageHook(slug)} context={{ post, slug, navPage }} />
+      {showComments ? comments : null}
     </article>
   );
 }
