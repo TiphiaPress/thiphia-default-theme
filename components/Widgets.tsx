@@ -2,11 +2,21 @@ import { Link } from "react-router-dom";
 import { stripHtml } from "../../../blog/lib/text";
 import type { PostResponse, RecentComment } from "../../../blog/types";
 
+function WidgetLoading() {
+  return (
+    <div className="widget-loading" aria-hidden="true">
+      <span />
+      <span />
+      <span />
+    </div>
+  );
+}
+
 export function PopularPosts({ posts, loading }: { posts: PostResponse[]; loading: boolean }) {
   return (
     <section className="widget">
       <h2>热门文章</h2>
-      {loading ? <p>加载中...</p> : null}
+      {loading ? <WidgetLoading /> : null}
       {!loading && posts.length === 0 ? <p>暂无热门文章</p> : null}
       {posts.map((post) => (
         <Link key={post.id} to={`/posts/${post.slug}`}>
@@ -26,7 +36,7 @@ export function RecentComments({ comments, loading }: { comments: RecentComment[
   return (
     <section className="widget">
       <h2>最新评论</h2>
-      {loading ? <p>加载中...</p> : null}
+      {loading ? <WidgetLoading /> : null}
       {!loading && comments.length === 0 ? <p>暂无评论</p> : null}
       {comments.map((comment) => (
         <Link key={comment.id} to={recentCommentPath(comment)}>
@@ -37,5 +47,3 @@ export function RecentComments({ comments, loading }: { comments: RecentComment[
     </section>
   );
 }
-
-

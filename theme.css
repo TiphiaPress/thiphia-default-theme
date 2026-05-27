@@ -2212,3 +2212,230 @@ footer .filing-info {
 
 
 
+
+/* Default theme loading states. */
+@keyframes theme-loading-shimmer {
+  0% {
+    background-position: 140% 0;
+  }
+  100% {
+    background-position: -140% 0;
+  }
+}
+
+@keyframes theme-state-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+:root[data-theme="default"] .theme-bootstrap-loading {
+  min-height: 100vh;
+  padding: 22px;
+  background: var(--theme-page-bg);
+}
+
+.theme-loading-shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.theme-loading-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 26px 0;
+}
+
+.theme-loading-brand,
+.theme-loading-nav,
+.theme-loading-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-loading-brand > div {
+  display: grid;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.theme-loading-nav {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.theme-loading-avatar {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid var(--theme-border);
+  border-radius: 50%;
+  background: var(--theme-surface);
+}
+
+.theme-loading-avatar.large {
+  width: 82px;
+  height: 82px;
+}
+
+.theme-loading-line,
+.widget-loading span,
+.theme-state-line {
+  display: block;
+  height: 12px;
+  max-width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--theme-border) 74%, transparent) 0%,
+    color-mix(in srgb, var(--theme-surface) 88%, #ffffff) 34%,
+    color-mix(in srgb, var(--theme-border) 74%, transparent) 68%
+  );
+  background-size: 240% 100%;
+  animation: theme-loading-shimmer 1.35s ease-in-out infinite;
+}
+
+.theme-loading-hero,
+.theme-loading-search,
+.theme-loading-card,
+.theme-loading-side {
+  border: 1px solid var(--theme-border);
+  border-radius: var(--theme-radius, 14px);
+  background: var(--theme-surface);
+  box-shadow: var(--theme-soft-shadow, 0 10px 30px rgba(15, 23, 42, 0.06));
+}
+
+.theme-loading-hero {
+  display: grid;
+  gap: 16px;
+  min-height: 220px;
+  align-content: center;
+  padding: clamp(26px, 5vw, 42px);
+}
+
+.theme-loading-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 12px;
+}
+
+.theme-loading-search .theme-loading-line {
+  height: 40px;
+  border-radius: 8px;
+}
+
+.theme-loading-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 18px;
+}
+
+.theme-loading-posts {
+  display: grid;
+  gap: 14px;
+}
+
+.theme-loading-card {
+  display: grid;
+  gap: 12px;
+  min-height: 160px;
+  padding: 22px;
+}
+
+.theme-loading-card .theme-loading-line:nth-child(2) {
+  height: 24px;
+}
+
+.theme-loading-side {
+  display: grid;
+  align-content: start;
+  gap: 13px;
+  min-height: 190px;
+  padding: 18px;
+}
+
+.theme-state {
+  display: grid;
+  grid-template-columns: auto minmax(0, max-content) minmax(80px, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+}
+
+.theme-state-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid color-mix(in srgb, var(--accent) 18%, var(--theme-border));
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: theme-state-spin 0.8s linear infinite;
+}
+
+.theme-state-line {
+  height: 10px;
+}
+
+.theme-state.error {
+  display: block;
+}
+
+.widget-loading {
+  display: grid;
+  gap: 9px;
+  padding-top: 4px;
+}
+
+.widget-loading span:nth-child(1) {
+  width: 86%;
+}
+
+.widget-loading span:nth-child(2) {
+  width: 72%;
+}
+
+.widget-loading span:nth-child(3) {
+  width: 64%;
+}
+
+@media (max-width: 760px) {
+  .theme-loading-header,
+  .theme-loading-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-loading-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .theme-loading-nav {
+    justify-content: flex-start;
+  }
+
+  .theme-loading-search {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-state {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .theme-state-line {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-loading-line,
+  .widget-loading span,
+  .theme-state-line,
+  .theme-state-spinner {
+    animation: none;
+  }
+}
