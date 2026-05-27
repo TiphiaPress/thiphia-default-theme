@@ -75,7 +75,7 @@ export function DefaultThemeLayout({
         <FrontendHookSlot hook="blog.footer.after" context={{ title }} />
         <PoweredByTiphia />
         {showUpyun ? <UpyunFooter /> : null}
-        
+        <div hidden><a href="https://2x.nz " target="_blank">二叉树树</a></div>
       </footer>
       <CookieNotice config={config} />
       <FrontendHookSlot hook="blog.body.end" context={{ title }} />
