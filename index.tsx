@@ -7,6 +7,7 @@ import { TermLinks } from "./components/TermLinks";
 import { ThemeFooterItems } from "./components/ThemeFooterItems";
 import { UpyunFooter } from "./components/UpyunFooter";
 import { PoweredByTiphia } from "./components/PoweredByTiphia";
+import { CookieNotice } from "./components/CookieNotice";
 import { DefaultBootstrapLoading } from "./components/BootstrapLoading";
 import type { ThemeNavPage } from "../../blog/lib/theme";
 import "./theme.css";
@@ -76,6 +77,7 @@ export function DefaultThemeLayout({
         {showUpyun ? <UpyunFooter /> : null}
         
       </footer>
+      <CookieNotice config={config} />
       <FrontendHookSlot hook="blog.body.end" context={{ title }} />
     </div>
   );
@@ -141,6 +143,7 @@ export const defaultTheme: BlogTheme = {
 };
 
 export default defaultTheme;
+
 
 
 

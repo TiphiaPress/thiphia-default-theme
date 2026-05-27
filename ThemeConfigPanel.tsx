@@ -25,6 +25,15 @@ interface DefaultThemeConfigForm {
   recent_comments_limit: string;
   footer_tag_limit: string;
   show_upyun: boolean;
+  announcement_enabled: boolean;
+  announcement_title: string;
+  announcement_content: string;
+  announcement_url: string;
+  announcement_link_text: string;
+  cookie_notice: boolean;
+  cookie_notice_text: string;
+  cookie_notice_accept_text: string;
+  cookie_notice_policy_url: string;
   pinned_post_ids: string;
   pinned_post_slugs: string;
   nav_pages: NavPageForm[];
@@ -123,6 +132,59 @@ export function DefaultThemeConfigPanel({ value, saving, error, onSubmit }: Them
           <label className="check-row">
             <input type="checkbox" checked={form.show_upyun} onChange={(event) => setForm({ ...form, show_upyun: event.target.checked })} />
             页脚展示又拍云联盟信息
+          </label>
+        </div>
+      </section>
+
+      <section className="editable-row">
+        <h3>站点公告</h3>
+        <div className="check-list plain">
+          <label className="check-row">
+            <input type="checkbox" checked={form.announcement_enabled} onChange={(event) => setForm({ ...form, announcement_enabled: event.target.checked })} />
+            在首页展示公告
+          </label>
+        </div>
+        <div className="config-grid">
+          <label className="field">
+            <span>公告标题</span>
+            <input value={form.announcement_title} placeholder="站点公告" onChange={(event) => setForm({ ...form, announcement_title: event.target.value })} />
+          </label>
+          <label className="field">
+            <span>链接文字</span>
+            <input value={form.announcement_link_text} placeholder="查看详情" onChange={(event) => setForm({ ...form, announcement_link_text: event.target.value })} />
+          </label>
+        </div>
+        <label className="field">
+          <span>公告内容</span>
+          <textarea rows={3} value={form.announcement_content} onChange={(event) => setForm({ ...form, announcement_content: event.target.value })} />
+        </label>
+        <label className="field">
+          <span>公告链接 URL</span>
+          <input value={form.announcement_url} placeholder="/posts/hello-world" onChange={(event) => setForm({ ...form, announcement_url: event.target.value })} />
+          <small>可选，支持站内路径或外部链接。</small>
+        </label>
+      </section>
+      <section className="editable-row">
+        <h3>Cookie 提示</h3>
+        <div className="check-list plain">
+          <label className="check-row">
+            <input type="checkbox" checked={form.cookie_notice} onChange={(event) => setForm({ ...form, cookie_notice: event.target.checked })} />
+            首次访问时展示 Cookie 提示
+          </label>
+        </div>
+        <label className="field">
+          <span>提示文本</span>
+          <textarea rows={3} value={form.cookie_notice_text} onChange={(event) => setForm({ ...form, cookie_notice_text: event.target.value })} />
+        </label>
+        <div className="config-grid">
+          <label className="field">
+            <span>按钮文字</span>
+            <input value={form.cookie_notice_accept_text} onChange={(event) => setForm({ ...form, cookie_notice_accept_text: event.target.value })} />
+          </label>
+          <label className="field">
+            <span>隐私说明 URL</span>
+            <input value={form.cookie_notice_policy_url} placeholder="/pages/privacy" onChange={(event) => setForm({ ...form, cookie_notice_policy_url: event.target.value })} />
+            <small>可选，填写后会显示“了解更多”链接。</small>
           </label>
         </div>
       </section>
@@ -260,6 +322,15 @@ function readConfig(value: Record<string, unknown>): DefaultThemeConfigForm {
     recent_comments_limit: numberString(value.recent_comments_limit),
     footer_tag_limit: numberString(value.footer_tag_limit),
     show_upyun: booleanValue(value.show_upyun),
+    announcement_enabled: booleanValue(value.announcement_enabled),
+    announcement_title: stringValue(value.announcement_title),
+    announcement_content: stringValue(value.announcement_content),
+    announcement_url: stringValue(value.announcement_url),
+    announcement_link_text: stringValue(value.announcement_link_text),
+    cookie_notice: booleanValue(value.cookie_notice),
+    cookie_notice_text: stringValue(value.cookie_notice_text),
+    cookie_notice_accept_text: stringValue(value.cookie_notice_accept_text),
+    cookie_notice_policy_url: stringValue(value.cookie_notice_policy_url),
     pinned_post_ids: arrayToText(value.pinned_post_ids),
     pinned_post_slugs: arrayToText(value.pinned_post_slugs),
     nav_pages: readNavPages(value.nav_pages),
@@ -280,6 +351,15 @@ function toConfig(form: DefaultThemeConfigForm) {
     recent_comments_limit: positiveNumber(form.recent_comments_limit),
     footer_tag_limit: positiveNumber(form.footer_tag_limit),
     show_upyun: form.show_upyun,
+    announcement_enabled: form.announcement_enabled,
+    announcement_title: form.announcement_title.trim(),
+    announcement_content: form.announcement_content.trim(),
+    announcement_url: form.announcement_url.trim(),
+    announcement_link_text: form.announcement_link_text.trim(),
+    cookie_notice: form.cookie_notice,
+    cookie_notice_text: form.cookie_notice_text.trim(),
+    cookie_notice_accept_text: form.cookie_notice_accept_text.trim(),
+    cookie_notice_policy_url: form.cookie_notice_policy_url.trim(),
     pinned_post_ids: numberList(form.pinned_post_ids),
     pinned_post_slugs: stringList(form.pinned_post_slugs),
     nav_pages: form.nav_pages
@@ -378,6 +458,10 @@ function stringList(value: string) {
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
+
+
+
+
 
 
 

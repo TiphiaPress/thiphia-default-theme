@@ -44,6 +44,10 @@ The default theme reads free-form JSON from the active theme configuration. Exam
 
 `show_upyun` controls the Upyun alliance footer. It is hidden unless the value is exactly `true`.
 
+`announcement_enabled` controls the homepage announcement banner. It is hidden unless the value is exactly `true` and either title or content is provided.
+
+`cookie_notice` controls the first-visit cookie notice. It is hidden by default unless the value is exactly `true`. `cookie_notice_text`, `cookie_notice_accept_text`, and `cookie_notice_policy_url` customize the message, button, and optional privacy link.
+
 ## Admin Configuration Panel
 
 Default theme provides `ThemeConfigPanel.tsx` and registers it through `ConfigPanel` in `src/themes/index.ts`.
@@ -61,3 +65,5 @@ const myTheme: BlogTheme = {
 ```
 
 The panel receives current config, saving state, error, and an `onSubmit(config)` callback. The submitted object is saved as the theme config in site settings.
+
+

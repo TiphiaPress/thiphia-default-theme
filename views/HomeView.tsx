@@ -1,6 +1,7 @@
 import { FrontendHookSlot } from "../../../framework/plugin-hooks";
 import type { Page, PostResponse, RecentComment, SiteSettings } from "../../../blog/types";
 import { SiteAvatar } from "../components/SiteAvatar";
+import { Announcement } from "../components/Announcement";
 import { PostCard } from "../components/PostCard";
 import { PopularPosts, RecentComments } from "../components/Widgets";
 import { State } from "../components/State";
@@ -48,6 +49,7 @@ export function DefaultHomeView({
         <p>{settings?.description || "A Rust blog powered by Tiphia."}</p>
       </div>
       <FrontendHookSlot hook="blog.home.hero.after" context={{ settings }} />
+      <Announcement config={settings?.theme.config} />
       <form
         className="search-form"
         onSubmit={(event) => {
@@ -79,4 +81,3 @@ export function DefaultHomeView({
     </section>
   );
 }
-
