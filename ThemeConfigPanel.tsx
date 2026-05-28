@@ -16,6 +16,7 @@ interface FooterItemForm {
 
 interface DefaultThemeConfigForm {
   accent: string;
+  appearance: "system" | "light" | "dark";
   font_family: string;
   liquid_glass: boolean;
   posts_per_page: string;
@@ -73,6 +74,14 @@ export function DefaultThemeConfigPanel({ value, saving, error, onSubmit }: Them
           <label className="field">
             <span>强调色</span>
             <input type="color" value={form.accent} onChange={(event) => setForm({ ...form, accent: event.target.value })} />
+          </label>
+          <label className="field">
+            <span>主题模式</span>
+            <select value={form.appearance} onChange={(event) => setForm({ ...form, appearance: event.target.value as DefaultThemeConfigForm["appearance"] })}>
+              <option value="system">跟随浏览器</option>
+              <option value="light">浅色模式</option>
+              <option value="dark">暗黑模式</option>
+            </select>
           </label>
           <label className="field">
             <span>字体</span>
@@ -313,6 +322,7 @@ export function DefaultThemeConfigPanel({ value, saving, error, onSubmit }: Them
 function readConfig(value: Record<string, unknown>): DefaultThemeConfigForm {
   return {
     accent: stringValue(value.accent) || "#2563eb",
+    appearance: appearanceValue(value.appearance),
     font_family: stringValue(value.font_family),
     liquid_glass: booleanValue(value.liquid_glass),
     posts_per_page: numberString(value.posts_per_page),
@@ -342,6 +352,7 @@ function readConfig(value: Record<string, unknown>): DefaultThemeConfigForm {
 function toConfig(form: DefaultThemeConfigForm) {
   return compactRecord({
     accent: form.accent.trim() || "#2563eb",
+    appearance: form.appearance,
     font_family: form.font_family.trim(),
     liquid_glass: form.liquid_glass,
     posts_per_page: positiveNumber(form.posts_per_page),
@@ -420,6 +431,10 @@ function compactRecord(value: Record<string, unknown>) {
   );
 }
 
+function appearanceValue(value: unknown): DefaultThemeConfigForm["appearance"] {
+  return value === "dark" || value === "light" || value === "system" ? value : "system";
+}
+
 function stringValue(value: unknown) {
   return typeof value === "string" ? value : "";
 }
@@ -458,6 +473,8 @@ function stringList(value: string) {
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
+
+
 
 
 

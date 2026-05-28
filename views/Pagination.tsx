@@ -15,12 +15,19 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
     return null;
   }
 
+  function changePage(nextPage: number) {
+    onPageChange(nextPage);
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
   return (
     <nav className="pagination" aria-label="分页导航">
-      <button disabled={currentPage <= 1} onClick={() => onPageChange(1)}>
+      <button disabled={currentPage <= 1} onClick={() => changePage(1)}>
         首页
       </button>
-      <button disabled={currentPage <= 1} onClick={() => onPageChange(currentPage - 1)}>
+      <button disabled={currentPage <= 1} onClick={() => changePage(currentPage - 1)}>
         上一页
       </button>
       <div className="pagination-pages">
@@ -34,17 +41,17 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
               className={item === currentPage ? "active" : undefined}
               key={item}
               aria-current={item === currentPage ? "page" : undefined}
-              onClick={() => onPageChange(item)}
+              onClick={() => changePage(item)}
             >
               {item}
             </button>
           ),
         )}
       </div>
-      <button disabled={currentPage >= safeTotalPages} onClick={() => onPageChange(currentPage + 1)}>
+      <button disabled={currentPage >= safeTotalPages} onClick={() => changePage(currentPage + 1)}>
         下一页
       </button>
-      <button disabled={currentPage >= safeTotalPages} onClick={() => onPageChange(safeTotalPages)}>
+      <button disabled={currentPage >= safeTotalPages} onClick={() => changePage(safeTotalPages)}>
         末页
       </button>
     </nav>
@@ -81,3 +88,7 @@ function paginationItems(page: number, totalPages: number): PaginationItem[] {
 function clampPage(page: number, totalPages: number) {
   return Math.min(Math.max(1, page), totalPages);
 }
+
+
+
+
