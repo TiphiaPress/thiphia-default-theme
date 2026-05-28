@@ -3010,29 +3010,24 @@ footer .filing-info {
 }
 
 /* Final dark-mode polish: readable taxonomy cards and no leakage into highlight plugin. */
-:root[data-theme="default"] .theme-appearance-dark :is(.term-tile, .friend-link, .state),
-:root[data-theme="default"] .theme-appearance-system :is(.term-tile, .friend-link, .state) {
+:root[data-theme="default"] .theme-appearance-dark :is(.term-tile, .friend-link, .state) {
   background: linear-gradient(145deg, rgba(18, 26, 43, 0.96), rgba(15, 23, 42, 0.92));
   border-color: rgba(91, 111, 142, 0.74);
 }
 
-:root[data-theme="default"] .theme-appearance-dark .term-tile span,
-:root[data-theme="default"] .theme-appearance-system .term-tile span {
+:root[data-theme="default"] .theme-appearance-dark .term-tile span {
   color: #f4f8ff;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .term-tile small,
-:root[data-theme="default"] .theme-appearance-system .term-tile small {
+:root[data-theme="default"] .theme-appearance-dark .term-tile small {
   color: #c6d1e2;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .term-tile strong,
-:root[data-theme="default"] .theme-appearance-system .term-tile strong {
+:root[data-theme="default"] .theme-appearance-dark .term-tile strong {
   color: color-mix(in srgb, var(--accent) 84%, #ffffff);
 }
 
-:root[data-theme="default"] .theme-appearance-dark.theme-liquid-glass :is(.term-tile, .friend-link, .state),
-:root[data-theme="default"] .theme-appearance-system.theme-liquid-glass :is(.term-tile, .friend-link, .state) {
+:root[data-theme="default"] .theme-appearance-dark.theme-liquid-glass :is(.term-tile, .friend-link, .state) {
   background:
     linear-gradient(145deg, rgba(30, 41, 59, 0.62), rgba(15, 23, 42, 0.3)),
     rgba(15, 23, 42, 0.32);
@@ -3088,69 +3083,55 @@ footer .filing-info {
 }
 
 /* Dark-mode readability for timeline and friend links. */
-:root[data-theme="default"] .theme-appearance-dark .timeline-group h2,
-:root[data-theme="default"] .theme-appearance-system .timeline-group h2 {
+:root[data-theme="default"] .theme-appearance-dark .timeline-group h2 {
   color: #f1f6ff;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .timeline-item,
-:root[data-theme="default"] .theme-appearance-system .timeline-item {
+:root[data-theme="default"] .theme-appearance-dark .timeline-item {
   border-color: rgba(91, 111, 142, 0.54);
   color: #dbe7f8;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .timeline-item time,
-:root[data-theme="default"] .theme-appearance-system .timeline-item time {
+:root[data-theme="default"] .theme-appearance-dark .timeline-item time {
   color: #b9c8dd;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .timeline-item span,
-:root[data-theme="default"] .theme-appearance-system .timeline-item span {
+:root[data-theme="default"] .theme-appearance-dark .timeline-item span {
   color: #e8f0fb;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .timeline-item:hover span,
-:root[data-theme="default"] .theme-appearance-system .timeline-item:hover span {
+:root[data-theme="default"] .theme-appearance-dark .timeline-item:hover span {
   color: color-mix(in srgb, var(--accent) 72%, #ffffff);
 }
 
 :root[data-theme="default"] .theme-appearance-dark .friend-links h2,
-:root[data-theme="default"] .theme-appearance-dark .friend-link-group h3,
-:root[data-theme="default"] .theme-appearance-system .friend-links h2,
-:root[data-theme="default"] .theme-appearance-system .friend-link-group h3 {
+:root[data-theme="default"] .theme-appearance-dark .friend-link-group h3 {
   color: #f3f8ff;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .friend-link strong,
-:root[data-theme="default"] .theme-appearance-system .friend-link strong {
+:root[data-theme="default"] .theme-appearance-dark .friend-link strong {
   color: #f1f6ff;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .friend-link small,
-:root[data-theme="default"] .theme-appearance-system .friend-link small {
+:root[data-theme="default"] .theme-appearance-dark .friend-link small {
   color: #c3d0e1;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .friend-link:hover strong,
-:root[data-theme="default"] .theme-appearance-system .friend-link:hover strong {
+:root[data-theme="default"] .theme-appearance-dark .friend-link:hover strong {
   color: color-mix(in srgb, var(--accent) 78%, #ffffff);
 }
 
-:root[data-theme="default"] .theme-appearance-dark.theme-liquid-glass .timeline-item,
-:root[data-theme="default"] .theme-appearance-system.theme-liquid-glass .timeline-item {
+:root[data-theme="default"] .theme-appearance-dark.theme-liquid-glass .timeline-item {
   border-color: rgba(148, 163, 184, 0.28);
 }
 
 :root[data-theme="default"] .theme-appearance-dark.theme-liquid-glass .friend-link strong,
-:root[data-theme="default"] .theme-appearance-dark.theme-liquid-glass .timeline-item span,
-:root[data-theme="default"] .theme-appearance-system.theme-liquid-glass .friend-link strong,
-:root[data-theme="default"] .theme-appearance-system.theme-liquid-glass .timeline-item span {
+:root[data-theme="default"] .theme-appearance-dark.theme-liquid-glass .timeline-item span {
   color: #f5f9ff;
 }
 
 /* Light liquid glass should stay readable and not inherit dark timeline overrides. */
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-light,
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-system {
+:root[data-theme="default"].theme-liquid-glass .theme-appearance-light {
   --theme-page-bg: #e8eef6;
   --theme-text: #142033;
   --theme-muted: #5f7088;
@@ -3165,58 +3146,34 @@ footer .filing-info {
     linear-gradient(180deg, #e6edf5, #f2f6fb 42%, #e9eff6);
 }
 
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .site,
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-system .site {
+:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .site {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 100%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px 100%);
   background-size: 44px 44px;
 }
 
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-group h2,
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-group h2 {
+:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-group h2 {
   color: #24344d;
 }
 
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item,
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-item {
+:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item {
   border-color: rgba(71, 85, 105, 0.26);
   color: #26364f;
 }
 
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item time,
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-item time {
+:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item time {
   color: #61728a;
 }
 
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item span,
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-item span {
+:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item span {
   color: #1d2b43;
 }
 
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item:hover span,
-:root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-item:hover span {
+:root[data-theme="default"].theme-liquid-glass .theme-appearance-light .timeline-item:hover span {
   color: var(--accent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root[data-theme="default"].theme-liquid-glass .theme-appearance-system {
-    --theme-page-bg: #08111f;
-    --theme-text: #eef4ff;
-    --theme-muted: #a8b4c7;
-    --text: #eef4ff;
-    --muted: #a8b4c7;
-  }
-
-  :root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-group h2,
-  :root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-item span {
-    color: #f5f9ff;
-  }
-
-  :root[data-theme="default"].theme-liquid-glass .theme-appearance-system .timeline-item time {
-    color: #b9c8dd;
-  }
-}
 
 /* Comment reply button should remain a text action, even in liquid glass mode. */
 :root[data-theme="default"] .comment > button.text-button,
@@ -3346,11 +3303,6 @@ footer .filing-info {
   opacity: 0.28;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root[data-theme="default"].theme-liquid-glass .theme-appearance-system {
-    --theme-page-bg: #08111f;
-  }
-}
 
 /* Darker grid backdrop for liquid glass mode. */
 :root[data-theme="default"].theme-liquid-glass {
@@ -4102,3 +4054,155 @@ footer .filing-info {
   cursor: not-allowed;
   opacity: 0.45;
 }
+
+/* System appearance branches: light is the default, dark only follows the browser preference. */
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system {
+  --theme-page-bg: #e8eef6;
+  --theme-text: #142033;
+  --theme-muted: #5f7088;
+  --text: #142033;
+  --muted: #5f7088;
+}
+:root[data-theme="default"] .theme-appearance-system .term-tile,
+:root[data-theme="default"] .theme-appearance-system .friend-link,
+:root[data-theme="default"] .theme-appearance-system .state {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  color: var(--text);
+}
+
+:root[data-theme="default"] .theme-appearance-system .term-tile span,
+:root[data-theme="default"] .theme-appearance-system .friend-link strong,
+:root[data-theme="default"] .theme-appearance-system .state h2,
+:root[data-theme="default"] .theme-appearance-system .state h3,
+:root[data-theme="default"] .theme-appearance-system .timeline-group h2,
+:root[data-theme="default"] .theme-appearance-system .timeline-item span {
+  color: var(--text);
+}
+
+:root[data-theme="default"] .theme-appearance-system .term-tile small,
+:root[data-theme="default"] .theme-appearance-system .friend-link small,
+:root[data-theme="default"] .theme-appearance-system .state p,
+:root[data-theme="default"] .theme-appearance-system .timeline-item time {
+  color: var(--muted);
+}
+
+:root[data-theme="default"] .theme-appearance-system .term-tile strong,
+:root[data-theme="default"] .theme-appearance-system .timeline-item:hover span {
+  color: var(--accent);
+}
+
+:root[data-theme="default"] .theme-appearance-system .timeline-item {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .term-tile,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .friend-link,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .state {
+  border-color: rgba(255, 255, 255, 0.78);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.26) 42%, rgba(218, 230, 244, 0.16) 100%),
+    rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 20px 52px rgba(70, 92, 118, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    inset 0 -1px 0 rgba(100, 116, 139, 0.10);
+  color: #142033;
+}
+
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .term-tile span,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .friend-link strong,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .state h2,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .state h3,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-group h2,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-item span {
+  color: #1d2b43;
+}
+
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .term-tile small,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .friend-link small,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .state p,
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-item time {
+  color: #64748b;
+}
+
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-item {
+  border-color: rgba(71, 85, 105, 0.22);
+  color: #26364f;
+}
+
+:root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-item:hover span {
+  color: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system {
+    --theme-page-bg: #08111f;
+    --theme-text: #eef4ff;
+    --theme-muted: #a8b4c7;
+    --text: #eef4ff;
+    --muted: #a8b4c7;
+  }
+
+  :root[data-theme="default"] .theme-appearance-system .term-tile,
+  :root[data-theme="default"] .theme-appearance-system .friend-link,
+  :root[data-theme="default"] .theme-appearance-system .state {
+    background: linear-gradient(145deg, rgba(18, 26, 43, 0.96), rgba(15, 23, 42, 0.92));
+    border-color: rgba(91, 111, 142, 0.74);
+    color: #e8f0fb;
+  }
+
+  :root[data-theme="default"] .theme-appearance-system .term-tile span,
+  :root[data-theme="default"] .theme-appearance-system .friend-link strong,
+  :root[data-theme="default"] .theme-appearance-system .state h2,
+  :root[data-theme="default"] .theme-appearance-system .state h3,
+  :root[data-theme="default"] .theme-appearance-system .timeline-group h2,
+  :root[data-theme="default"] .theme-appearance-system .timeline-item span {
+    color: #f1f6ff;
+  }
+
+  :root[data-theme="default"] .theme-appearance-system .term-tile small,
+  :root[data-theme="default"] .theme-appearance-system .friend-link small,
+  :root[data-theme="default"] .theme-appearance-system .state p,
+  :root[data-theme="default"] .theme-appearance-system .timeline-item time {
+    color: #b9c8dd;
+  }
+
+  :root[data-theme="default"] .theme-appearance-system .timeline-item {
+    border-color: rgba(91, 111, 142, 0.54);
+    color: #dbe7f8;
+  }
+
+  :root[data-theme="default"] .theme-appearance-system .timeline-item:hover span {
+    color: color-mix(in srgb, var(--accent) 72%, #ffffff);
+  }
+
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .term-tile,
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .friend-link,
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .state {
+    background:
+      linear-gradient(145deg, rgba(30, 41, 59, 0.62), rgba(15, 23, 42, 0.3)),
+      rgba(15, 23, 42, 0.32);
+    border-color: rgba(148, 163, 184, 0.34);
+    color: #e8f0fb;
+  }
+
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-group h2,
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-item span {
+    color: #f5f9ff;
+  }
+
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-item time {
+    color: #b9c8dd;
+  }
+
+  :root[data-theme="default"].theme-liquid-glass .site.theme-appearance-system .timeline-item {
+    border-color: rgba(148, 163, 184, 0.28);
+  }
+}
+
+
+
+
