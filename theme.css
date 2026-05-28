@@ -3042,7 +3042,6 @@ footer .filing-info {
 :root[data-theme="default"] .theme-appearance-dark .tiphia-code-block *,
 :root[data-theme="default"] .theme-appearance-system .tiphia-code-block,
 :root[data-theme="default"] .theme-appearance-system .tiphia-code-block * {
-  color: revert;
   text-shadow: none;
 }
 
@@ -3052,19 +3051,21 @@ footer .filing-info {
   border-color: var(--code-border) !important;
 }
 
-:root[data-theme="default"] .theme-appearance-dark .tiphia-code-block :is(pre, code, .token),
-:root[data-theme="default"] .theme-appearance-system .tiphia-code-block :is(pre, code, .token) {
+:root[data-theme="default"] .theme-appearance-dark .tiphia-code-block :is(pre, code),
+:root[data-theme="default"] .theme-appearance-system .tiphia-code-block :is(pre, code) {
   background: transparent !important;
-  color: inherit;
+}
+
+:root[data-theme="default"] .theme-appearance-dark .tiphia-code-block .token,
+:root[data-theme="default"] .theme-appearance-system .tiphia-code-block .token {
+  background: transparent !important;
 }
 
 :root[data-theme="default"] .theme-appearance-dark .tiphia-code-block pre,
 :root[data-theme="default"] .theme-appearance-dark .tiphia-code-block code,
-:root[data-theme="default"] .theme-appearance-dark .tiphia-code-block .token,
 :root[data-theme="default"] .theme-appearance-system .tiphia-code-block pre,
-:root[data-theme="default"] .theme-appearance-system .tiphia-code-block code,
-:root[data-theme="default"] .theme-appearance-system .tiphia-code-block .token {
-  color: var(--code-text) !important;
+:root[data-theme="default"] .theme-appearance-system .tiphia-code-block code {
+  color: var(--code-text);
 }
 
 :root[data-theme="default"] .theme-appearance-dark .tiphia-code-block .tiphia-code-header,
@@ -4790,3 +4791,45 @@ footer .filing-info {
     background: none;
   }
 }
+
+/* Keep the visitor style switcher away from the cookie notice on compact screens. */
+@media (max-width: 640px) {
+  :root[data-theme="default"] .local-style-switcher {
+    bottom: calc(max(14px, env(safe-area-inset-bottom, 0px)) + 142px);
+    right: max(14px, env(safe-area-inset-right, 0px));
+  }
+
+  :root[data-theme="default"] .local-style-panel {
+    bottom: 52px;
+    max-height: min(48vh, 340px);
+    width: min(320px, calc(100vw - 28px));
+  }
+
+  :root[data-theme="default"] .cookie-notice {
+    z-index: 160;
+  }
+}
+
+@media (max-width: 640px) and (max-height: 620px) {
+  :root[data-theme="default"] .local-style-switcher {
+    bottom: calc(max(14px, env(safe-area-inset-bottom, 0px)) + 118px);
+  }
+
+  :root[data-theme="default"] .local-style-panel {
+    max-height: min(42vh, 280px);
+  }
+}
+
+/* Desktop cookie notice belongs to the lower-left corner; mobile keeps full-width breathing room. */
+:root[data-theme="default"] .cookie-notice {
+  left: max(18px, env(safe-area-inset-left, 0px));
+  right: auto;
+}
+
+@media (max-width: 640px) {
+  :root[data-theme="default"] .cookie-notice {
+    left: 14px;
+    right: 14px;
+  }
+}
+
