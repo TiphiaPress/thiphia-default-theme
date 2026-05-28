@@ -2590,3 +2590,29 @@ footer .filing-info {
     width: fit-content;
   }
 }
+
+/* iOS Safari viewport polish: prevent top overscroll from exposing a white strip. */
+:root[data-theme="default"],
+:root[data-theme="default"] body,
+:root[data-theme="default"] #root {
+  min-height: 100%;
+  background-color: var(--theme-page-bg);
+}
+
+:root[data-theme="default"] body {
+  min-height: 100dvh;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+:root[data-theme="default"] .site {
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top, 0);
+  background-color: var(--theme-page-bg);
+}
+
+:root[data-theme="default"].theme-liquid-glass,
+:root[data-theme="default"].theme-liquid-glass body,
+:root[data-theme="default"].theme-liquid-glass #root {
+  background-color: #f3f7fc;
+}
