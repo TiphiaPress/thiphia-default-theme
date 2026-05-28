@@ -43,6 +43,7 @@ export function DefaultThemeLayout({
   const fallbackAccent = themeAccent(config);
   const [localStyle, setLocalStyle] = useState(() => readLocalThemeStyle(fallbackAppearance, fallbackLiquidGlass, fallbackAccent));
   const appearance = localStyle.appearance;
+  const resolvedAppearance = useResolvedAppearance(appearance);
   useFrontendHeadEffects({ title, description, baseUrl });
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export function DefaultThemeLayout({
   }, [localStyle.liquidGlass, localStyle.accent]);
 
   return (
-    <div className={`site default-theme theme-appearance-${appearance}`} data-appearance={appearance} onClick={(event) => handleExternalLinkClick(event, baseUrl)}>
+    <div className={`site default-theme theme-appearance-${resolvedAppearance}`} data-appearance={appearance} data-resolved-appearance={resolvedAppearance} onClick={(event) => handleExternalLinkClick(event, baseUrl)}>
       <FrontendHookSlot hook="blog.body.start" context={{ title }} />
       <FrontendHookSlot hook="blog.header.before" context={{ title }} />
       <header className="site-header">
@@ -123,6 +124,31 @@ export function DefaultThemeLayout({
   );
 }
 
+
+function useResolvedAppearance(appearance: string) {
+  const [prefersDark, setPrefersDark] = useState(() => {
+    if (typeof window === "undefined" || !window.matchMedia) {
+      return false;
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    if (appearance !== "system" || typeof window === "undefined" || !window.matchMedia) {
+      return;
+    }
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const sync = () => setPrefersDark(media.matches);
+    sync();
+    media.addEventListener?.("change", sync);
+    return () => media.removeEventListener?.("change", sync);
+  }, [appearance]);
+
+  if (appearance === "system") {
+    return prefersDark ? "dark" : "light";
+  }
+  return appearance === "dark" ? "dark" : "light";
+}
 function themeAppearance(config: Record<string, unknown>) {
   const value = config.appearance;
   return value === "dark" || value === "light" || value === "system" ? value : "system";
@@ -190,6 +216,9 @@ export const defaultTheme: BlogTheme = {
 };
 
 export default defaultTheme;
+
+
+
 
 
 
