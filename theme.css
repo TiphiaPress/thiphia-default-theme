@@ -4833,3 +4833,73 @@ footer .filing-info {
   }
 }
 
+
+/* Mobile article pages should not be squeezed by nested frame spacing. */
+@media (max-width: 720px) {
+  :root[data-theme="default"] .site > main {
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  :root[data-theme="default"] .article {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 22px 16px 48px;
+  }
+
+  :root[data-theme="default"] .site.theme-appearance-dark .article,
+  :root[data-theme="default"].theme-liquid-glass .site .article {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-radius: 18px;
+  }
+
+  :root[data-theme="default"].theme-liquid-glass .site .article {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  :root[data-theme="default"] .article > h1 {
+    font-size: clamp(30px, 10vw, 42px);
+  }
+}
+
+@media (max-width: 420px) {
+  :root[data-theme="default"] .site > main {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  :root[data-theme="default"] .article,
+  :root[data-theme="default"].theme-liquid-glass .site .article {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* Ultra-narrow phones should use the full viewport width for article surfaces. */
+@media (max-width: 520px) {
+  :root[data-theme="default"] .site > main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  :root[data-theme="default"] .article,
+  :root[data-theme="default"].theme-liquid-glass .site .article,
+  :root[data-theme="default"] .site.theme-appearance-dark .article {
+    margin-left: 0;
+    margin-right: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-radius: 16px;
+  }
+
+  :root[data-theme="default"] .article {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
