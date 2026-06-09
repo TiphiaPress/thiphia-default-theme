@@ -4903,3 +4903,282 @@ footer .filing-info {
   }
 }
 
+
+/* Friend link diagnostics from the links frontend plugin. */
+:root[data-theme="default"] .friend-link {
+  grid-template-columns: 44px minmax(0, 1fr);
+  grid-template-rows: auto;
+}
+
+:root[data-theme="default"] .friend-link-body {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+:root[data-theme="default"] .friend-link-health-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.14);
+}
+
+:root[data-theme="default"] .friend-link-health-dot.is-ok {
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.14);
+}
+
+:root[data-theme="default"] .friend-link-health-dot.is-warn,
+:root[data-theme="default"] .friend-link-health-dot.is-checking {
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
+}
+
+:root[data-theme="default"] .friend-link-health-dot.is-bad {
+  background: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.16);
+}
+
+:root[data-theme="default"] .friend-link-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+:root[data-theme="default"] .friend-link-check {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 20px;
+  border: 1px solid color-mix(in srgb, var(--theme-border) 78%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--theme-soft-surface) 76%, transparent);
+  color: var(--theme-muted);
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1;
+  padding: 3px 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:root[data-theme="default"] .friend-link-check.is-ok {
+  border-color: rgba(34, 197, 94, 0.26);
+  background: rgba(34, 197, 94, 0.09);
+  color: #15803d;
+}
+
+:root[data-theme="default"] .friend-link-check.is-warn,
+:root[data-theme="default"] .friend-link-check.is-checking {
+  border-color: rgba(245, 158, 11, 0.28);
+  background: rgba(245, 158, 11, 0.1);
+  color: #a16207;
+}
+
+:root[data-theme="default"] .friend-link-check.is-bad {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+}
+
+:root[data-theme="default"] .friend-link-check.is-unknown {
+  border-color: rgba(100, 116, 139, 0.28);
+  background: rgba(100, 116, 139, 0.1);
+  color: #64748b;
+}
+
+:root[data-theme="default"] .site.theme-appearance-dark .friend-link-check.is-ok {
+  color: #86efac;
+}
+
+:root[data-theme="default"] .site.theme-appearance-dark .friend-link-check.is-warn,
+:root[data-theme="default"] .site.theme-appearance-dark .friend-link-check.is-checking {
+  color: #fcd34d;
+}
+
+:root[data-theme="default"] .site.theme-appearance-dark .friend-link-check.is-bad {
+  color: #fca5a5;
+}
+
+:root[data-theme="default"] .site.theme-appearance-dark .friend-link-check.is-unknown {
+  color: #cbd5e1;
+}
+
+@media (max-width: 520px) {
+  :root[data-theme="default"] .friend-link-checks {
+    gap: 4px;
+  }
+
+  :root[data-theme="default"] .friend-link-check {
+    font-size: 10.5px;
+    padding-inline: 6px;
+  }
+}
+
+/* Friend link card layout polish: keep diagnostics from squeezing names/descriptions. */
+:root[data-theme="default"] .friend-link-list {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+:root[data-theme="default"] .friend-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 178px;
+  padding: 18px 16px 14px;
+  gap: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+:root[data-theme="default"] .friend-link-health-dot {
+  top: 13px;
+  right: 13px;
+  width: 10px;
+  height: 10px;
+}
+
+:root[data-theme="default"] .friend-link img {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  margin: 0 auto;
+}
+
+:root[data-theme="default"] .friend-link-body {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+:root[data-theme="default"] .friend-link strong,
+:root[data-theme="default"] .friend-link small {
+  max-width: 100%;
+  text-align: center;
+}
+
+:root[data-theme="default"] .friend-link strong {
+  font-size: 16px;
+}
+
+:root[data-theme="default"] .friend-link small {
+  min-height: 1.45em;
+}
+
+:root[data-theme="default"] .friend-link-checks {
+  justify-content: center;
+  margin-top: auto;
+  max-width: 100%;
+}
+
+:root[data-theme="default"] .friend-link-check {
+  max-width: 96px;
+  min-height: 21px;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  :root[data-theme="default"] .friend-link-list {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  :root[data-theme="default"] .friend-link-list {
+    grid-template-columns: 1fr;
+  }
+
+  :root[data-theme="default"] .friend-link {
+    min-height: 154px;
+  }
+}
+/* Keep friend-link health indicators anchored and readable in liquid glass mode. */
+:root[data-theme="default"] .friend-link > .friend-link-health-dot,
+:root[data-theme="default"].theme-liquid-glass .friend-link > .friend-link-health-dot {
+  position: absolute;
+  inset: 13px 13px auto auto;
+  z-index: 8;
+  display: block;
+  width: 11px;
+  height: 11px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  background: #94a3b8;
+  box-shadow:
+    0 0 0 3px rgba(148, 163, 184, 0.16),
+    0 4px 12px rgba(15, 23, 42, 0.16);
+}
+
+:root[data-theme="default"] .friend-link > .friend-link-health-dot.is-ok,
+:root[data-theme="default"].theme-liquid-glass .friend-link > .friend-link-health-dot.is-ok {
+  background: #00e676;
+  box-shadow:
+    0 0 0 3px rgba(0, 230, 118, 0.24),
+    0 0 14px rgba(0, 230, 118, 0.72),
+    0 4px 12px rgba(15, 23, 42, 0.16);
+}
+
+:root[data-theme="default"] .friend-link > .friend-link-health-dot.is-warn,
+:root[data-theme="default"] .friend-link > .friend-link-health-dot.is-checking,
+:root[data-theme="default"].theme-liquid-glass .friend-link > .friend-link-health-dot.is-warn,
+:root[data-theme="default"].theme-liquid-glass .friend-link > .friend-link-health-dot.is-checking {
+  background: #facc15;
+  box-shadow:
+    0 0 0 3px rgba(250, 204, 21, 0.24),
+    0 0 14px rgba(250, 204, 21, 0.58),
+    0 4px 12px rgba(15, 23, 42, 0.16);
+}
+
+:root[data-theme="default"] .friend-link > .friend-link-health-dot.is-bad,
+:root[data-theme="default"].theme-liquid-glass .friend-link > .friend-link-health-dot.is-bad {
+  background: #ff3b30;
+  box-shadow:
+    0 0 0 3px rgba(255, 59, 48, 0.22),
+    0 0 14px rgba(255, 59, 48, 0.62),
+    0 4px 12px rgba(15, 23, 42, 0.16);
+}
+/* Compact diagnostics should remain readable instead of being clipped. */
+:root[data-theme="default"] .friend-link-check {
+  flex: 0 1 auto;
+  width: auto;
+  max-width: none;
+  padding-inline: 9px;
+}
+
+@media (max-width: 520px) {
+  :root[data-theme="default"] .friend-link-check {
+    max-width: 46%;
+  }
+}
+/* Friend-link status labels must fit short Chinese states. */
+:root[data-theme="default"] .friend-link-check {
+  flex: 0 0 auto;
+  width: max-content;
+  max-width: 100%;
+  min-width: max-content;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+@media (max-width: 520px) {
+  :root[data-theme="default"] .friend-link-check {
+    max-width: 100%;
+    min-width: max-content;
+  }
+}
