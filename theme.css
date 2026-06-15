@@ -5231,3 +5231,40 @@ footer .filing-info {
     will-change: auto;
   }
 }
+/* Keep external-warning and 404 action buttons readable on hover. */
+:root[data-theme="default"] .external-actions .button,
+:root[data-theme="default"] .not-found-panel .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+:root[data-theme="default"] .external-actions .button:not(.subtle),
+:root[data-theme="default"] .not-found-panel .button:not(.subtle) {
+  color: #ffffff;
+}
+
+:root[data-theme="default"] .external-actions .button:not(.subtle):hover,
+:root[data-theme="default"] .not-found-panel .button:not(.subtle):hover {
+  color: #ffffff;
+  background: color-mix(in srgb, var(--accent) 86%, #111827);
+  filter: none;
+  text-decoration: none;
+}
+
+:root[data-theme="default"] .external-actions .button.subtle:hover,
+:root[data-theme="default"] .not-found-panel .button.subtle:hover {
+  color: color-mix(in srgb, var(--accent) 72%, var(--theme-text));
+  background: color-mix(in srgb, var(--accent) 9%, var(--theme-surface));
+  filter: none;
+  text-decoration: none;
+}
+
+:root[data-theme="default"] .site.theme-appearance-dark .external-actions .button.subtle:hover,
+:root[data-theme="default"] .site.theme-appearance-dark .not-found-panel .button.subtle:hover {
+  color: #dbeafe;
+  background: rgba(30, 41, 59, 0.82);
+}
