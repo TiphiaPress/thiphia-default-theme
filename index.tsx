@@ -44,6 +44,7 @@ export function DefaultThemeLayout({
   const [localStyle, setLocalStyle] = useState(() => readLocalThemeStyle(fallbackAppearance, fallbackLiquidGlass, fallbackAccent));
   const appearance = localStyle.appearance;
   const resolvedAppearance = useResolvedAppearance(appearance);
+  const location = useLocation();
   useFrontendHeadEffects({ title, description, baseUrl });
 
   useEffect(() => {
@@ -86,8 +87,10 @@ export function DefaultThemeLayout({
       </header>
       <FrontendHookSlot hook="blog.header.after" context={{ title }} />
       <FrontendHookSlot hook="blog.main.before" context={{ title }} />
-      <main>
-        <Outlet />
+      <main className="site-main">
+        <div className="theme-page-transition" key={`${location.pathname}${location.search}`}>
+          <Outlet />
+        </div>
       </main>
       <FrontendHookSlot hook="blog.sidebar" context={{ title }} />
       <FrontendHookSlot hook="blog.main.after" context={{ title }} />

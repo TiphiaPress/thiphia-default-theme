@@ -5182,3 +5182,52 @@ footer .filing-info {
     min-width: max-content;
   }
 }
+/* Stable page transitions: keep footer from jumping while route data settles. */
+@keyframes theme-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+:root[data-theme="default"] .site {
+  min-height: 100vh;
+}
+
+:root[data-theme="default"] .site-main {
+  min-height: clamp(520px, 62vh, 860px);
+  contain: layout paint;
+}
+
+:root[data-theme="default"] .theme-page-transition {
+  min-height: inherit;
+  animation: theme-page-enter 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  will-change: opacity, transform;
+}
+
+:root[data-theme="default"] .theme-page-transition > :first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 720px) {
+  :root[data-theme="default"] .site-main {
+    min-height: clamp(460px, 64vh, 760px);
+  }
+
+  :root[data-theme="default"] .theme-page-transition {
+    animation-duration: 220ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="default"] .theme-page-transition {
+    animation: none;
+    will-change: auto;
+  }
+}
